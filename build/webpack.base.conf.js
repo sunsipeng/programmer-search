@@ -80,6 +80,7 @@ module.exports = {
     formatter: require('eslint-friendly-formatter')
   },
   vue: {
+    postcss: [require('precss')()],
     loaders: utils.cssLoaders()
   }
 }

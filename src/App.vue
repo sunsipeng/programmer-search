@@ -1,19 +1,16 @@
 <template>
   <div id="app">
-    <pre>{{ anObject | json }}</pre>
-    <ul>
-      <li v-for="item in anArray">{{ item.text }}</li>
-    </ul>
+    <home></home>
   </div>
 </template>
 
 <script>
 // import Wilddog from 'Wilddog'
-import Hello from './components/Hello'
+import Home from './components/Home/index'
 
 export default {
   components: {
-    Hello
+    home: Home
   }
 }
 </script>

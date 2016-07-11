@@ -1,0 +1,20 @@
+.search-result {
+  width: 645px;
+  .search-item {
+    margin-top: 20px;
+    .result-title {
+      height: 26px;
+      line-height: 26px;
+      font-size: 16px;
+    }
+    .result-content {
+      line-height: 16px;
+      font-size: 10px;
+      overflow: auto;
+    }
+    .result-link {
+      font-size: 10px;
+      color: #008000;
+    }
+  }
+}

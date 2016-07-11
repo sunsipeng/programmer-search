@@ -1,0 +1,36 @@
+.home {
+  position: relative;
+  padding-top: 100px;
+  .content {
+    width: 650px;
+    margin: 0 auto;
+  }
+}
+
+.search {
+  width: 650px;
+  height: 45px;
+  border: 1px solid #3388ff;
+  font-size: 14px;
+  .ipt-search {
+    float: left;
+    display: block;
+    padding-left: 10px;
+    width: 535px;
+    height: 42px;
+    border: 0;
+    outline:none;
+  }
+  .btn-search {
+    float: right;
+    width: 100px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    background: #3388ff;
+    border: 0;
+    cursor: pointer;
+  }
+}
