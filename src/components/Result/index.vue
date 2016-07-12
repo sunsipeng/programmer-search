@@ -3,7 +3,7 @@
 <template>
   <div class="search-result">
     <div class="search-item" v-for="item in items" track-by="$index">
-      <a class="result-title" :href="item.link">
+      <a class="result-title" :href="item.link" target=_blank>
         {{item.title}}
       </a>
       <div class="result-content">

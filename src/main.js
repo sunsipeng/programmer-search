@@ -9,12 +9,6 @@ import App from './App'
 
 // const cRef = ref.child(CHILD_NAME)
 
-// cRef.on('value', function (data, error) {
-//   if (error == null) {
-//     // console.log(data.val())   // 结果会在 console 中打印出 "beijing"
-//   }
-// })
-
 /* eslint-disable no-new */
 new Vue({
   el: 'body',

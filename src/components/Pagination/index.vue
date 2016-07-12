@@ -62,34 +62,51 @@ export default {
     addRightEllipse () {
       const len = this.items.length
       const currentLastPage = this.items[len - 1].index
-      if (currentLastPage <= this.lastPage - 4) {
+      if (currentLastPage < this.lastPage) {
         this.rightEllipse = true
-      } else if (currentLastPage > this.lastPage - 4) {
+      } else if (currentLastPage === this.lastPage) {
         this.rightEllipse = false
       }
     },
     setPaginationItems (clickPage) {
-      let unit = clickPage - this.currentPage
+      let len = this.items.length
+      let currentStartPage = clickPage - Math.floor(len / 2)
+      let currentLastPage = clickPage + Math.floor(len / 2)
+
       if (clickPage > this.currentPage && clickPage >= 4) {
-        this.items.forEach((item) => {
-          item.index = item.index + unit
-        })
-      } else if (clickPage < this.currentPage && this.items[0].index > 1) {
-        this.items.forEach((item) => {
-          item.index = item.index + unit
-        })
+        if (currentLastPage >= this.lastPage) {
+          this.resetRightItems()
+        } else {
+          this.items.forEach((item, index) => {
+            item.index = currentStartPage + index
+          })
+        }
+      } else if (clickPage < this.currentPage && clickPage <= this.lastPage - 3) {
+        if (currentStartPage <= 0) {
+          this.resetLeftItmes()
+        } else {
+          this.items.forEach((item, index) => {
+            item.index = currentStartPage + index
+          })
+        }
       }
 
       if (clickPage === 1) {
-        this.items.forEach((item, index) => {
-          item.index = index + 1
-        })
+        this.resetLeftItmes()
       } else if (clickPage === this.lastPage) {
-        this.items.forEach((item, index) => {
-          let curIndex = this.lastPage - this.items.length + index + 1
-          item.index = curIndex
-        })
+        this.resetRightItems()
       }
+    },
+    resetLeftItmes () {
+      this.items.forEach((item, index) => {
+        item.index = index + 1
+      })
+    },
+    resetRightItems () {
+      this.items.forEach((item, index) => {
+        let curIndex = this.lastPage - this.items.length + index + 1
+        item.index = curIndex
+      })
     }
   },
   ready () {

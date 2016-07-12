@@ -14,12 +14,16 @@
 </template>
 
 <script>
+import api from '../../api/index'
 import Result from '../Result/index'
 import Pagination from '../Pagination/index'
 export default {
   data () {
     return {
     }
+  },
+  ready () {
+    api.queryTest()
   },
   components: {
     result: Result,
