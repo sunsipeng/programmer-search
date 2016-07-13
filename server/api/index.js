@@ -5,16 +5,18 @@ const query = new AV.Query('segmentfault')
 const segment = util.getNewSegment()
 
 const getParticiple = (str) => {
+  var simpleKey = []
   const keyWords = segment.doSegment(str, {
-    simple: true,
-    stripPunctuation: true,
-    convertSynonym: true
+    simple: true
   })
-  return keyWords
+  keyWords.forEach(function (item) {
+    simpleKey.push(item['w'])
+  })
+  console.log(simpleKey)
+  return simpleKey
 }
 
 const querySegment = (params) => {
-  console.log(params.page)
   return query.get('5785a1e479bc440050b5ae69')
 }
 

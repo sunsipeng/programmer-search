@@ -7,7 +7,7 @@
         <input type="text" class="ipt-search" placeholder="关键字" v-model="searchVal"/>
         <button type="button" class="btn-search" @click="search">搜索一下</button>
       </div>
-      <result></result>
+      <result :result="result"></result>
       <pagination></pagination>
     </div>
   </div>
@@ -32,6 +32,7 @@ export default {
         title: this.searchVal
       }
       api.getTopics(data).then((ret) => {
+        this.result = ret.data
         console.log(ret.data)
       })
     }

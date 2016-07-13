@@ -19,13 +19,18 @@ app.use(function (req, res, next) {
 
 app.post('/topics', function (req, res, next) {
   var params = req.body
-  console.log(params)
+  var keyWords = api.getParticiple(params.title)
   api.querySegment(params).then(function (data) {
-    var results = []
-    for (var i = 0; i < 10; i++) {
-      results.push(data.get('results')[i])
-    }
-    res.json(results)
+    var results = data.get('results')
+    var matchs = []
+    results.forEach(function (item) {
+      keyWords.forEach(function (key) {
+        if (item.sourceTitle.indexOf(key) !== -1) {
+          matchs.push(item)
+        }
+      })
+    })
+    res.json(matchs)
   })
 })
 
