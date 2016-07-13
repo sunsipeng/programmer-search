@@ -1,30 +1,17 @@
-import Wilddog from 'wilddog'
+import Vue from 'vue'
+import vueResource from 'vue-resource'
 
-const ref = new Wilddog('https://express-learn.wilddogio.com/segmentfault/testData')
+Vue.use(vueResource)
 
-const queryTest = (childStr) => {
-  // const CHILD_NAME = 'testData'
-  // const cRef = ref.child(CHILD_NAME)
-  var arr = []
-  for (var i = 0; i < 100; i++) {
-    var data = {
-      index: i,
-      title: 'title',
-      content: 'content',
-      keyWords: 'keyWords'
-    }
-    arr.push(data)
-  }
-  ref.update({
-    'data': arr
-  })
-  ref.child('test/data').limitToFirst(5).on('value', function (data, error) {
-    if (error == null) {
-      console.log(data.val())
-    }
-  })
-}
+// HTTP相关
+Vue.http.options.crossOrigin = true
+
+const API_ROOT = 'http://10.31.30.97:3001'
+
+const HomeResource = Vue.resource(API_ROOT + '/topics')
 
 export default {
-  queryTest
+  getTopics (data) {
+    return HomeResource.save(data)
+  }
 }
