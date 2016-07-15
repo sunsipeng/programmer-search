@@ -4,7 +4,8 @@ const AV = require('leancloud-storage')
 class LearnCloud {
   constructor () {
     this.AV = this.initNewAV()
-    this.query = new this.AV.Query('segmentfault')
+    this.query = new this.AV.Query('Segmentfault')
+    this.ref = new this.AV.Object.extend('Segmentfault')
   }
 
   initNewAV () {
