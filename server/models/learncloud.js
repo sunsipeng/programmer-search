@@ -16,10 +16,6 @@ class LearnCloud {
     })
     return AV
   }
-
-  querySegment (params) {
-    return this.query.get('5785a1e479bc440050b5ae69')
-  }
 }
 
 module.exports = LearnCloud

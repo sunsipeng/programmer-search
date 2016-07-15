@@ -1,3 +1,4 @@
+'use strict'
 module.exports = function (router) {
   var topic = require('./topic')
   var test = require('./test')

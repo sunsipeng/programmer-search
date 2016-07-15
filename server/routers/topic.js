@@ -1,21 +1,13 @@
-const Util = require('../controllers/util')
-const util = new Util()
-const participle = util.participle
-const leancloud = util.leancloud
+'use strict'
+const Participle = require('../controllers/participle')
+const Learncloud = require('../controllers/learncloud')
+const participle = new Participle()
+const learncloud = new Learncloud()
 
 exports.topics = function (req, res, next) {
   var params = req.body
   var keyWords = participle.getParticiple(params.title)
-  leancloud.querySegment(params).then(function (data) {
-    var results = data.get('results')
-    var matchs = []
-    results.forEach(function (item) {
-      keyWords.forEach(function (key) {
-        if (item.sourceTitle.indexOf(key) !== -1) {
-          matchs.push(item)
-        }
-      })
-    })
-    res.json(matchs)
+  learncloud.querySegment(keyWords).then((data) => {
+    res.json(data)
   })
 }

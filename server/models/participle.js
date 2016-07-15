@@ -11,18 +11,6 @@ class Participle {
     segment.useDefault()
     return segment
   }
-
-  getParticiple (str) {
-    var simpleKey = []
-    const keyWords = this.segment.doSegment(str, {
-      simple: true
-    })
-    keyWords.forEach(function (item) {
-      simpleKey.push(item['w'])
-    })
-    console.log(simpleKey)
-    return simpleKey
-  }
 }
 
 module.exports = Participle
