@@ -2,8 +2,8 @@
 const modelReptile = require('../models/reptile')
 
 class Reptile extends modelReptile {
-  fetchArticle () {
-    this.fetchArticleDetil()
+  fetchArticle (callback) {
+    this.fetchArticleDetil(callback)
   }
 }
 

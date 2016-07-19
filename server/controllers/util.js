@@ -1,12 +1,12 @@
 'use strict'
 var Participle = require('../models/participle')
-var Learncloud = require('../models/learncloud')
+var Leancloud = require('../models/Leancloud')
 
 class Util {
   constructor () {
     this.participle = new Participle()
-    this.learncloud = new Learncloud()
-    this.query = new this.learncloud.AV.Query('segmentfault')
+    this.Leancloud = new Leancloud()
+    this.query = new this.Leancloud.AV.Query('segmentfault')
   }
 
   getParticiple (str) {

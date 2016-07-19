@@ -1,10 +1,11 @@
 'use strict'
-const modelLearncloud = require('../models/learncloud')
+const modelLeancloud = require('../models/Leancloud')
 
-class Learncloud extends modelLearncloud {
+class Leancloud extends modelLeancloud {
 
   querySegment (keyWords) {
-    return this.query.get('5785a1e479bc440050b5ae69').then((data) => {
+    console.log('query123123213')
+    return this.query.get('578dede81532bc0061f8bcd6').then((data) => {
       var results = data.get('results')
       var matchs = this.matchResult(results, keyWords)
       return Promise.resolve(matchs)
@@ -24,4 +25,4 @@ class Learncloud extends modelLearncloud {
   }
 }
 
-module.exports = Learncloud
+module.exports = Leancloud
