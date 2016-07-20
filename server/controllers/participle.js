@@ -1,3 +1,8 @@
+/**
+ * node-segment词性表
+ * https://github.com/leizongmin/node-segment/blob/master/lib/POSTAG.js
+ */
+
 'use strict'
 const modelParticiple = require('../models/participle')
 
@@ -8,7 +13,6 @@ class Participle extends modelParticiple {
     const keyWords = this.participle.doSegment(str, {
       simple: true
     })
-    // https://github.com/leizongmin/node-segment/blob/master/lib/POSTAG.js
     var removeKeys = [0x00000800, 0x10000000, 0x00020000, 0x00002000, 0x00000200]
     keyWords.forEach((item) => {
       if (!this.hasParams(simpleKey, item['w']) && !this.hasParams(removeKeys, item['p'])) {

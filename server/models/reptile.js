@@ -1,17 +1,18 @@
 'use strict'
 var superagent = require('superagent')
 var cheerio = require('cheerio')
-var Leancloud = require('../controllers/Leancloud')
 var Participle = require('../controllers/participle')
 var async = require('async')
 var url = require('url')
 var colors = require('colors')
+var Article = require('../controllers/article.js')
+
+var article = new Article()
 var FETCH_URL = 'https://segmentfault.com/questions'
 
 class Reptile {
   constructor () {
     this.participle = new Participle()
-    this.segmentRef = new Leancloud().ref
     this.page = 1
     this.results = []
     this.count = 100000
@@ -69,7 +70,8 @@ class Reptile {
     var key = this.getKeyWords(title)
     var data = {
       key: key,
-      sourceLink: url,
+      type: 'segmentfault',
+      sourcePath: url,
       sourceTitle: title,
       sourceContent: content
     }
@@ -82,9 +84,8 @@ class Reptile {
     var len = allResults.length
     if (len < this.MAX_LENGTH) {
       result.forEach((item, index) => {
-        this.segmentRef.set('result' + index, item)
+        article.save(item)
       })
-      this.segmentRef.save()
       this.page++
       this.fetchArticleDetil()
     }
