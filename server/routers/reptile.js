@@ -1,9 +1,9 @@
 'use strict'
 
-const Reptile = require('../controllers/reptile')
-const reptile = new Reptile()
+const reptile = require('../public/scripts/reptile')
 exports.fecthInfo = function (req, res, next) {
   reptile.fetchArticle(function (result) {
-    res.send(result.length)
+    let len = result.length + ''
+    // res.send(len)
   })
 }

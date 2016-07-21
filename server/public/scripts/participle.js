@@ -8,7 +8,7 @@ const segment = new Segment()
 segment.useDefault()
 
 const ctrl = {
-  getParticiple: (str) => {
+  getKeys: function (str) {
     let keyArr = []
     let removeKeys = [0x00000800, 0x10000000, 0x00020000, 0x00002000, 0x00000200]
     const keyWords = segment.doSegment(str)
@@ -19,7 +19,7 @@ const ctrl = {
     })
     return keyArr
   },
-  hasParams: (array, params) => {
+  hasParams: function (array, params) {
     let hasParams = false
     array.forEach((items) => {
       if (items === params) {

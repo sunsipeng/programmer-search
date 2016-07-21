@@ -7,7 +7,10 @@
         <input type="text" class="ipt-search" placeholder="关键字" v-model="searchVal"/>
         <button type="button" class="btn-search" @click="search">搜索一下</button>
       </div>
-      <result :result="result"></result>
+      <result
+        :results="results"
+        :key-words="keyWords"
+        ></result>
       <pagination></pagination>
     </div>
   </div>
@@ -17,12 +20,13 @@
 import api from '../../api/index'
 import Result from '../Result/index'
 import Pagination from '../Pagination/index'
+var $ = require('jquery')
 export default {
   data () {
     return {
       searchVal: '',
-      key: [],
-      result: []
+      keyWords: [],
+      results: []
     }
   },
   methods: {
@@ -32,8 +36,8 @@ export default {
         title: this.searchVal
       }
       api.getTopics(data).then((ret) => {
-        this.result = ret.data
-        console.log(ret.data)
+        this.results = ret.data.results
+        this.keyWords = ret.data.keyWords
       })
     }
   },

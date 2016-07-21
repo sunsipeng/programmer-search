@@ -8,3 +8,7 @@
 .clearfix {
   *+height: 1%;
 }
+.highlight {
+  color: #cb3837;
+  /*font-weight: bold;*/
+}

@@ -4,7 +4,6 @@ var ModelArticle = require('../models/article.js')
 class Article {
   save (data) {
     var model = new ModelArticle(data)
-    console.log(data)
     model.save(function (err, model) {
       if (err) return console.error(err)
       console.log('save status:' + err)
@@ -33,7 +32,6 @@ class Article {
   removeAll () {
     ModelArticle.find({}, function (err, doc) {
       if (err) { return err }
-      console.log('result', doc)
       if (doc) {
         doc.forEach((item) => {
           item.remove()

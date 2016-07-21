@@ -8,6 +8,7 @@
       font-size: 16px;
       color: #337ab7;
       text-decoration: none;
+      cursor: pointer;
     }
     .result-content {
       line-height: 16px;
