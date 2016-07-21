@@ -6,6 +6,8 @@
       <li @click="evtFirstTab"><<</li>
       <li v-if="leftEllipse">...</li>
       <li v-for="item of items"
+        class="pagination-item"
+        data-id="{{item.index}}"
         :class="{active: this.currentPage === item.index}"
         @click="evtPaginationTab(item.index)">
         {{item.index}}
@@ -17,17 +19,30 @@
 </template>
 
 <script>
+import { getTopics } from '../../vuex/actions'
 export default {
   data () {
     return {
       currentPage: 1,
-      lastPage: 100,
       leftEllipse: false,
       rightEllipse: false,
       items: []
     }
   },
+  computed: {
+    lastPage: function () {
+      return Math.floor(this.count / 10)
+    }
+  },
   methods: {
+    searchTopics (index) {
+      const data = {
+        page: index,
+        title: this.searchKey,
+        limit: 10
+      }
+      this.getTopics(data)
+    },
     initData () {
       for (let i = 1; i < 6; i++) {
         let item = {
@@ -39,6 +54,7 @@ export default {
     },
     evtPaginationTab (index) {
       this.evtPagination(index)
+      this.searchTopics(index)
     },
     evtFirstTab () {
       this.evtPagination(1)
@@ -111,6 +127,15 @@ export default {
   },
   ready () {
     this.initData()
+  },
+  vuex: {
+    getters: {
+      searchKey: state => state.searchKey,
+      count: state => state.count
+    },
+    actions: {
+      getTopics
+    }
   }
 }
 </script>

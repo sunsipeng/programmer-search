@@ -61,11 +61,10 @@
     "vue-loader": "^8.3.0",
     "vue-resource": "^0.9.3",
     "vue-style-loader": "^1.0.0",
+    "vuex": "^0.8.2",
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0",
-    "webpack-merge": "^0.8.3",
-    "wilddog": "^0.7.2",
-    "wildvue": "^1.0.4"
+    "webpack-merge": "^0.8.3"
   }
 }

@@ -2,7 +2,10 @@
 
 <template>
   <div class="search-result">
-    <div class="search-item" v-for="item in results" track-by="$index">
+    <div class="search-title">
+      找到约<strong>{{count}}</strong>个结果
+    </div>
+    <div class="search-item" v-for="item in results">
       <a class="result-title" :href="item.sourcePath" target=_blank>
         {{item.sourceTitle}}
       </a>
@@ -20,32 +23,28 @@
 var $ = require('jquery')
 import 'jquery-highlight'
 export default {
-  data () {
-    return {
-    }
-  },
-  props: {
-    results: {
-      type: Array
-    },
-    keyWords: {
-      type: Array
-    }
-  },
   watch: {
-    results: function (newVal, oldVal) {
+    keyWords: function (newVal, oldVal) {
       this.highlight()
     }
+    // results: function(newVal, oldVal) {
+    //   // this.results.forEach()
+    // }
   },
   methods: {
     highlight () {
-      console.log($('.search-result').highlight)
+      $('.search-result').unhighlight()
       this.keyWords.forEach((key) => {
         $('.search-result').highlight(key)
       })
     }
   },
-  ready () {
+  vuex: {
+    getters: {
+      results: state => state.results,
+      count: state => state.count,
+      keyWords: state => state.keyWords
+    }
   }
 }
 </script>

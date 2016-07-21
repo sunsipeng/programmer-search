@@ -1,5 +1,9 @@
 .search-result {
   width: 645px;
+  .search-title {
+    margin-top: 20px;
+    font-size: 15px;
+  }
   .search-item {
     margin-top: 20px;
     .result-title {
@@ -12,7 +16,7 @@
     }
     .result-content {
       line-height: 16px;
-      font-size: 10px;
+      font-size: 12px;
       color: #999;
       word-break:break-all;
       display:-webkit-box;
@@ -23,6 +27,7 @@
     .result-link {
       font-size: 10px;
       color: #008000;
+      cursor: pointer;
     }
   }
 }

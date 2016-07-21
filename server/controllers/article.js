@@ -12,10 +12,12 @@ class Article {
 
   query (data, fn) {
     var condition = data || {}
-    ModelArticle.find(condition, function (err, doc) {
-      if (err) { return err }
-      fn(doc)
-    })
+    ModelArticle.find(condition)
+      .sort({ date: -1 })
+      .exec(function (err, doc) {
+        if (err) { return err }
+        fn(doc)
+      })
   }
 
   remove (data) {

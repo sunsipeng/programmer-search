@@ -1,17 +1,23 @@
 .home {
   position: relative;
-  padding-top: 100px;
+  padding-top: 60px;
   .content {
     width: 650px;
     margin: 0 auto;
   }
 }
 
+.search-title {
+  width: 100%;
+  text-align: center;
+}
 .search {
   width: 650px;
   height: 45px;
   border: 1px solid #3388ff;
   font-size: 14px;
+  border-radius: 2px;
+  background: #fff;
   .ipt-search {
     float: left;
     display: block;
@@ -33,4 +39,9 @@
     border: 0;
     cursor: pointer;
   }
+}
+
+.moveTop {
+  position: fixed;
+  top: 0;
 }

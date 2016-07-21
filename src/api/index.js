@@ -12,6 +12,6 @@ const HomeResource = Vue.resource(API_ROOT + '/topics')
 
 export default {
   getTopics (data) {
-    return HomeResource.save(data)
+    return HomeResource.get(data)
   }
 }
