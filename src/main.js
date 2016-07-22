@@ -1,16 +1,17 @@
 import 'normalize.css'
 import './assets/style/base.css'
 import Vue from 'vue'
+import VueRouter from 'vue-router'
 import App from './App'
-// import Wilddog from 'wilddog'
+import routerMap from './router.js'
 
-// const ref = new Wilddog('https://express-learn.wilddogio.com/segmentfault')
-// const CHILD_NAME = 'childArr'
+Vue.use(VueRouter)
+const router = new VueRouter()
 
-// const cRef = ref.child(CHILD_NAME)
-
+routerMap(router)
+router.start(App, 'app')
 /* eslint-disable no-new */
-new Vue({
-  el: 'body',
-  components: { App }
-})
+// new Vue({
+//   el: 'body',
+//   components: { App }
+// })

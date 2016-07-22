@@ -40,9 +40,8 @@ var ctrl = {
   config: {
     url: 'https://segmentfault.com/questions',
     page: 1,
-    startTime: '',
     articles: [],
-    currencyCount: 1,
+    currencyCount: 0,
     MAX_LENGTH: 20000
   },
   fetchPages: function () {

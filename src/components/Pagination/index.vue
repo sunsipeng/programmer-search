@@ -7,10 +7,10 @@
       <li v-if="leftEllipse">...</li>
       <li v-for="item of items"
         class="pagination-item"
-        data-id="{{item.index}}"
-        :class="{active: this.currentPage === item.index}"
-        @click="evtPaginationTab(item.index)">
-        {{item.index}}
+        data-id="{{item}}"
+        :class="{active: this.currentPage === item}"
+        @click="evtPaginationTab(item)">
+        {{item}}
       </li>
       <li v-if="rightEllipse">...</li>
       <li @click="evtLastTab">>></li>
@@ -26,12 +26,17 @@ export default {
       currentPage: 1,
       leftEllipse: false,
       rightEllipse: false,
-      items: []
+      items: [1, 2, 3, 4, 5]
     }
   },
   computed: {
     lastPage: function () {
       return Math.floor(this.count / 10)
+    }
+  },
+  watch: {
+    searchKey: function () {
+      this.initData()
     }
   },
   methods: {
@@ -42,15 +47,12 @@ export default {
         limit: 10
       }
       this.getTopics(data)
+      this.$router.go({name: 'home', query: data})
     },
     initData () {
-      for (let i = 1; i < 6; i++) {
-        let item = {
-          index: i
-        }
-        this.items.push(item)
-      }
-      this.evtFirstTab()
+      const query = this.$route.query
+      this.currentPage = +query.page || 1
+      this.evtPaginationTab(this.currentPage)
     },
     evtPaginationTab (index) {
       this.evtPagination(index)
@@ -58,9 +60,11 @@ export default {
     },
     evtFirstTab () {
       this.evtPagination(1)
+      this.searchTopics(1)
     },
     evtLastTab () {
       this.evtPagination(this.lastPage)
+      this.searchTopics(this.lastPage)
     },
     evtPagination (clickPage) {
       this.setPaginationItems(clickPage)
@@ -77,7 +81,7 @@ export default {
     },
     addRightEllipse () {
       const len = this.items.length
-      const currentLastPage = this.items[len - 1].index
+      const currentLastPage = this.items[len - 1]
       if (currentLastPage < this.lastPage) {
         this.rightEllipse = true
       } else if (currentLastPage === this.lastPage) {
@@ -93,16 +97,16 @@ export default {
         if (currentLastPage >= this.lastPage) {
           this.resetRightItems()
         } else {
-          this.items.forEach((item, index) => {
-            item.index = currentStartPage + index
+          this.items = this.items.map((item, index) => {
+            return currentStartPage + index
           })
         }
       } else if (clickPage < this.currentPage && clickPage <= this.lastPage - 3) {
         if (currentStartPage <= 0) {
           this.resetLeftItmes()
         } else {
-          this.items.forEach((item, index) => {
-            item.index = currentStartPage + index
+          this.items = this.items.map((item, index) => {
+            return currentStartPage + index
           })
         }
       }
@@ -114,19 +118,18 @@ export default {
       }
     },
     resetLeftItmes () {
-      this.items.forEach((item, index) => {
-        item.index = index + 1
+      this.items = this.items.map((item, index) => {
+        return index + 1
       })
     },
     resetRightItems () {
-      this.items.forEach((item, index) => {
+      this.items = this.items.map((item, index) => {
         let curIndex = this.lastPage - this.items.length + index + 1
-        item.index = curIndex
+        return curIndex
       })
     }
   },
   ready () {
-    this.initData()
   },
   vuex: {
     getters: {

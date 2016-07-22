@@ -46,11 +46,11 @@ exports.topics = function (req, res, next) {
   var title = query.title
   var page = query.page
   var limit = query.limit
-  console.log(title, page, limit)
   var start = (page - 1) * limit
   var end = page * limit
   var keyWords = participle.getKeys(title)
   var re = utils.getRegular(keyWords)
+  // if (!title) res.json
   console.log({'sourceTitle': new RegExp(re)})
   article.query({'sourceTitle': new RegExp(re)}, function (doc) {
     res.json({

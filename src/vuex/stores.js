@@ -15,7 +15,6 @@ const mutations = {
     state.results = data.results
     state.keyWords = data.keyWords
     state.count = data.count
-    console.log(data.results)
   },
   SAVE_SEARCH_KEY (state, key) {
     state.searchKey = key

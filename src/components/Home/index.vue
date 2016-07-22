@@ -28,10 +28,32 @@ export default {
     return {
       searchVal: '',
       keyWords: [],
-      results: []
+      results: [],
+      page: 1,
+      limit: 10,
+      searchData: {}
     }
   },
   methods: {
+    initParams () {
+      const query = this.$route.query
+      // console.log(this.$router, this.$router.query)
+      if (query) {
+        this.page = query.page
+        this.limit = query.limit
+        this.searchVal = query.title
+      }
+    },
+    initTopics () {
+      this.initParams()
+      const data = {
+        page: this.page || 1,
+        title: this.searchVal,
+        limit: this.limit || 10
+      }
+      this.getTopics(data)
+      this.saveSearchKey(this.searchVal)
+    },
     search () {
       const data = {
         page: 1,
@@ -40,12 +62,12 @@ export default {
       }
       this.getTopics(data)
       this.saveSearchKey(this.searchVal)
+      this.$router.go({name: 'home', query: data})
     },
     evtMoveToTop () {
       const $window = $(window)
       const $search = $('.search')
       let searchPosition = $search.offset().top
-      console.log(searchPosition)
       $window.on('scroll', function () {
         let scrollTop = $window.scrollTop()
         if (scrollTop > searchPosition) {
@@ -56,8 +78,13 @@ export default {
       })
     }
   },
+  route: {
+    data: function () {
+    }
+  },
   ready () {
     this.evtMoveToTop()
+    this.initTopics()
   },
   components: {
     result: Result,
