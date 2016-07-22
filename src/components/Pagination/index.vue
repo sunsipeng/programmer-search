@@ -36,6 +36,12 @@ export default {
     }
   },
   methods: {
+    setItems (currentPage) {
+      let currentStartPage = currentPage - Math.floor(this.items.length / 2)
+      this.items = this.items.map((item, index) => {
+        return currentStartPage + index
+      })
+    },
     getTopic (index) {
       const data = {
         page: index,
@@ -46,8 +52,11 @@ export default {
       this.$router.go({name: 'home', query: data})
     },
     init () {
-      var page = this.$route.query && this.$route.query.page
-      this.currentPage = +page || 1
+      var page = this.$route.query && +this.$route.query.page
+      if (page) {
+        this.currentPage = page
+        this.setItems(page)
+      }
       this.evtPagination(this.currentPage)
     },
     evtPaginationTab (index) {
