@@ -1,7 +1,7 @@
 <style src="./index.css" scoped></style>
 
 <template>
-  <div class="pagination">
+  <div class="pagination" v-if="results.length !== 0">
     <ul class="clearfix">
       <li @click="evtFirstTab"><<</li>
       <li v-if="leftEllipse">...</li>
@@ -26,21 +26,17 @@ export default {
       currentPage: 1,
       leftEllipse: false,
       rightEllipse: false,
+      paginationState: false,
       items: [1, 2, 3, 4, 5]
     }
   },
   computed: {
     lastPage: function () {
-      return Math.floor(this.count / 10)
-    }
-  },
-  watch: {
-    searchKey: function () {
-      this.initData()
+      return Math.floor(this.count / 10) || 10
     }
   },
   methods: {
-    searchTopics (index) {
+    getTopic (index) {
       const data = {
         page: index,
         title: this.searchKey,
@@ -49,22 +45,22 @@ export default {
       this.getTopics(data)
       this.$router.go({name: 'home', query: data})
     },
-    initData () {
-      const query = this.$route.query
-      this.currentPage = +query.page || 1
-      this.evtPaginationTab(this.currentPage)
+    init () {
+      var page = this.$route.query && this.$route.query.page
+      this.currentPage = +page || 1
+      this.evtPagination(this.currentPage)
     },
     evtPaginationTab (index) {
       this.evtPagination(index)
-      this.searchTopics(index)
+      this.getTopic(index)
     },
     evtFirstTab () {
       this.evtPagination(1)
-      this.searchTopics(1)
+      this.getTopic(1)
     },
     evtLastTab () {
       this.evtPagination(this.lastPage)
-      this.searchTopics(this.lastPage)
+      this.getTopic(this.lastPage)
     },
     evtPagination (clickPage) {
       this.setPaginationItems(clickPage)
@@ -130,11 +126,13 @@ export default {
     }
   },
   ready () {
+    this.init()
   },
   vuex: {
     getters: {
       searchKey: state => state.searchKey,
-      count: state => state.count
+      count: state => state.count,
+      results: state => state.results
     },
     actions: {
       getTopics

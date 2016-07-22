@@ -35,24 +35,13 @@ export default {
     }
   },
   methods: {
-    initParams () {
-      const query = this.$route.query
-      // console.log(this.$router, this.$router.query)
-      if (query) {
-        this.page = query.page
-        this.limit = query.limit
-        this.searchVal = query.title
-      }
-    },
     initTopics () {
-      this.initParams()
-      const data = {
-        page: this.page || 1,
-        title: this.searchVal,
-        limit: this.limit || 10
+      const query = this.$route.query
+      if (query.page) {
+        this.searchVal = query.title
+        this.getTopics(query)
+        this.saveSearchKey(this.searchVal)
       }
-      this.getTopics(data)
-      this.saveSearchKey(this.searchVal)
     },
     search () {
       const data = {
@@ -78,19 +67,19 @@ export default {
       })
     }
   },
-  route: {
-    data: function () {
-    }
-  },
   ready () {
-    this.evtMoveToTop()
     this.initTopics()
+    this.evtMoveToTop()
   },
   components: {
     result: Result,
     pagination: Pagination
   },
   vuex: {
+    getters: {
+      paginationPage: state => state.paginationPage,
+      query: state => state.query
+    },
     actions: {
       getTopics,
       saveSearchKey
