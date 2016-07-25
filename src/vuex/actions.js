@@ -11,3 +11,7 @@ export const getTopics = ({ dispatch }, data) => {
 export const saveSearchKey = ({ dispatch }, searchKey) => {
   dispatch('SAVE_SEARCH_KEY', searchKey)
 }
+
+export const toggleSearch = ({ dispatch }, searchStatus) => {
+  dispatch('TOGGLE_SEARCH', searchStatus)
+}

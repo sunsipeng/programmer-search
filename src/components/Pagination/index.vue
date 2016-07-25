@@ -1,7 +1,7 @@
 <style src="./index.css" scoped></style>
 
 <template>
-  <div class="pagination" v-if="results.length !== 0">
+  <div class="pagination" v-if="count !== 0">
     <ul class="clearfix">
       <li @click="evtFirstTab"><<</li>
       <li v-if="leftEllipse">...</li>
@@ -33,6 +33,12 @@ export default {
   computed: {
     lastPage: function () {
       return Math.floor(this.count / 10) || 10
+    }
+  },
+  watch: {
+    searchStatus: function () {
+      console.log('toggle')
+      this.evtFirstTab()
     }
   },
   methods: {
@@ -141,7 +147,8 @@ export default {
     getters: {
       searchKey: state => state.searchKey,
       count: state => state.count,
-      results: state => state.results
+      results: state => state.results,
+      searchStatus: state => state.searchStatus
     },
     actions: {
       getTopics

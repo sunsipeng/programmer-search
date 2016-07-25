@@ -6,8 +6,9 @@ Vue.use(Vuex)
 const state = {
   results: [],
   keyWords: [],
-  count: '',
-  searchKey: ''
+  count: 0,
+  searchKey: '',
+  searchStatus: false
 }
 
 const mutations = {
@@ -18,6 +19,9 @@ const mutations = {
   },
   SAVE_SEARCH_KEY (state, key) {
     state.searchKey = key
+  },
+  TOGGLE_SEARCH (state, searchStatus) {
+    state.searchStatus = !state.searchStatus
   }
 }
 

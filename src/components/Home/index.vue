@@ -21,7 +21,7 @@
 import api from '../../api/index'
 import Result from '../Result/index'
 import Pagination from '../Pagination/index'
-import { getTopics, saveSearchKey } from '../../vuex/actions'
+import { getTopics, saveSearchKey, toggleSearch } from '../../vuex/actions'
 var $ = require('jquery')
 export default {
   data () {
@@ -49,7 +49,7 @@ export default {
         title: this.searchVal,
         limit: 10
       }
-      this.getTopics(data)
+      this.toggleSearch()
       this.saveSearchKey(this.searchVal)
       this.$router.go({name: 'home', query: data})
     },
@@ -82,7 +82,8 @@ export default {
     },
     actions: {
       getTopics,
-      saveSearchKey
+      saveSearchKey,
+      toggleSearch
     }
   }
 }
