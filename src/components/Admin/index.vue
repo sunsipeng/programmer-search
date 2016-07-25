@@ -7,7 +7,7 @@
         segmentfault文章采集
       </h3>
       <button type="button" name="button" class="btn-start" @click="start">重新开始</button>
-      <button type="button" name="button" class="btn-start" @click="queryDate">查询数量</button>
+      <!-- <button type="button" name="button" class="btn-start" @click="queryDate">查询数量</button> -->
       <div class="sidebar-tips">
         注意：重新开始会清除之前数据库的所有数据
       </div>

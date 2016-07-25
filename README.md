@@ -2,7 +2,7 @@
 
 > 码农搜索-一个程序员的内容索引网站
 
-## 构建步骤
+## 启动步骤
 
 ``` bash
 # 安装依赖
@@ -12,20 +12,28 @@ npm install
 npm run server
 
 # 运行本地的webpack服务，使用默认端口http://localhost:8080进行访问
-npm run server
+npm run dev
 
 ```
 
-## 注意事项
+## 运行步骤
 
-运行项目前需先在本地启动mongodb服务并且启动mongodb服务
-可以向通过http://localhost:3001/reptile先运行爬虫程序，将segmentfault的数据爬完后再运行项目
 运行项目步骤：
 
-```bash
-# 运行node服务
-npm run server
+- 运行mongodb服务（可先安装mongodb后将其bin目录设置为系统环境变量，然后在cmd命令下通过mongod启动）
+- 访问``http://localhost:8080/#!/admin``，初次使用会显示服务器数据条数为0条
+- 点击``重新开始``按钮,此时会启动node的爬虫服务，并且实时刷新抓取到的数据条数
+- 等待数据抓取到遇到条数后（默认6000条）,访问``http://localhost:8080/#!/``进入搜索页面
+- 这时就可以在输入框进行搜索了
 
-# 运行本地的webpack服务，使用默认端口http://localhost:8080进行访问
-npm run server
-```
+## 项目结构
+
+## 技术栈
+- Vue.js
+- vue-router
+- vue-resource
+- vuex
+- webpack
+- express
+- mongoose
+- echarts

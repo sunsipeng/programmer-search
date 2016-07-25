@@ -30,7 +30,7 @@ export const startFetchData = ({ dispatch }) => {
   }
   let reptileData = {
     type: 1,
-    maxCount: 300
+    maxCount: 30000
   }
   api.removeAll(removeData).then(() => {
     api.startReptile(reptileData)
