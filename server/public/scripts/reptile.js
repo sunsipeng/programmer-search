@@ -68,7 +68,7 @@ var ctrl = {
       self.config.currencyCount--
     })
   },
-  saveArticleData: function (err, result, callback) {
+  saveArticleData: function (err, result) {
     var articles = this.config.articles
     if (err) return console.error(err)
     this.config.articles = this.config.articles.concat(result)
@@ -76,10 +76,7 @@ var ctrl = {
       result.forEach(function (item, index) {
         article.save(item)
       })
-      this.fetchArticle(callback)
-    }
-    if (typeof callback === 'function') {
-      callback(this.config.articles)
+      this.fetchArticle()
     }
     this.successLog()
     this.config.page++
@@ -98,9 +95,9 @@ var ctrl = {
       self.saveArticleData(err, result, success)
     })
   },
-  fetchArticle: function (success) {
+  fetchArticle: function () {
     this.fetchPages().then(function (topicUrls) {
-      ctrl.asyncMapPages(topicUrls, success)
+      ctrl.asyncMapPages(topicUrls)
     })
   }
 }
