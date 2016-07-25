@@ -8,7 +8,8 @@ const state = {
   keyWords: [],
   count: 0,
   searchKey: '',
-  searchStatus: false
+  searchStatus: false,
+  dataBase: {}
 }
 
 const mutations = {
@@ -22,6 +23,9 @@ const mutations = {
   },
   TOGGLE_SEARCH (state, searchStatus) {
     state.searchStatus = !state.searchStatus
+  },
+  QUERY_DATABASE (state, dataBase) {
+    state.dataBase = dataBase
   }
 }
 

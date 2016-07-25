@@ -3,15 +3,22 @@ import vueResource from 'vue-resource'
 
 Vue.use(vueResource)
 
-// HTTP相关
-Vue.http.options.crossOrigin = true
-
 const API_ROOT = 'http://localhost:3001'
 
 const HomeResource = Vue.resource(API_ROOT + '/topics')
+const AdminResource = Vue.resource(API_ROOT + '/admin{/id}')
 
 export default {
-  getTopics (data) {
-    return HomeResource.get(data)
+  getTopics (options) {
+    return HomeResource.get(options)
+  },
+  queryCount (options) {
+    return AdminResource.get({id: 'query', ...options})
+  },
+  removeAll (options) {
+    return AdminResource.save({id: 'removeAll'}, options)
+  },
+  startReptile (options) {
+    return AdminResource.save({id: 'reptile'}, options)
   }
 }

@@ -20,6 +20,14 @@ class Article {
       })
   }
 
+  queryCount (fn) {
+    ModelArticle.count(function (err, doc) {
+      if (err) { return err }
+      console.log(doc)
+      fn(doc)
+    })
+  }
+
   remove (data) {
     var condition = data || {}
     ModelArticle.findOne(condition, function (err, doc) {
@@ -31,13 +39,14 @@ class Article {
     })
   }
 
-  removeAll () {
+  removeAll (fn) {
     ModelArticle.find({}, function (err, doc) {
       if (err) { return err }
       if (doc) {
         doc.forEach((item) => {
           item.remove()
         })
+        fn({message: 'remove all success'})
         console.log('remove all success!')
       }
     })

@@ -15,3 +15,24 @@ export const saveSearchKey = ({ dispatch }, searchKey) => {
 export const toggleSearch = ({ dispatch }, searchStatus) => {
   dispatch('TOGGLE_SEARCH', searchStatus)
 }
+
+// 查询数据库数据
+export const queryCount = ({ dispatch }, data) => {
+  api.queryCount(data).then((ret) => {
+    let data = ret.data
+    dispatch('QUERY_DATABASE', data)
+  })
+}
+
+export const startFetchData = ({ dispatch }) => {
+  let removeData = {
+    type: 1
+  }
+  let reptileData = {
+    type: 1,
+    maxCount: 300
+  }
+  api.removeAll(removeData).then(() => {
+    api.startReptile(reptileData)
+  })
+}
