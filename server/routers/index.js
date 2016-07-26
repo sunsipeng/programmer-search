@@ -1,8 +1,8 @@
 'use strict'
 module.exports = function (router) {
-  var topic = require('./topic')
-  var admin = require('./admin')
-  var reptile = require('./reptile')
+  const topic = require('./topic')
+  const admin = require('./admin')
+  const reptile = require('./reptile')
 
   router.get('/topics', topic.topics)
   router.get('/reptile', reptile.fecthInfo)

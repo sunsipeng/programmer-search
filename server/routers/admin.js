@@ -7,10 +7,10 @@ exports.query = function (req, res, next) {
   let type = req.query && req.query.type
   if (+type === 1) {
     article.queryCount(function (count) {
-      // if (!count) {
-      //   res.send({message: 'count not found'})
-      // }
-      console.log(count)
+      if (!count) {
+        res.status('404')
+        res.send({message: 'count not found'})
+      }
       res.send({count: count})
     })
   } else {
@@ -23,6 +23,7 @@ exports.removeAll = function (req, res, next) {
   if (+type === 1) {
     article.removeAll((message) => {
       if (!message) {
+        res.status('404')
         res.send({message: 'Data not found'})
       }
       res.send({message: message})

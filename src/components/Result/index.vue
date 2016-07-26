@@ -20,16 +20,13 @@
 </template>
 
 <script>
-var $ = require('jquery')
+const $ = require('jquery')
 import 'jquery-highlight'
 export default {
   watch: {
     keyWords: function (newVal, oldVal) {
       this.highlight()
     }
-    // results: function(newVal, oldVal) {
-    //   // this.results.forEach()
-    // }
   },
   methods: {
     highlight () {

@@ -37,7 +37,6 @@ export default {
   },
   watch: {
     searchStatus: function () {
-      console.log('toggle')
       this.evtFirstTab()
     }
   },
@@ -58,7 +57,7 @@ export default {
       this.$router.go({name: 'home', query: data})
     },
     init () {
-      var page = this.$route.query && +this.$route.query.page
+      const page = this.$route.query && +this.$route.query.page
       if (page) {
         this.currentPage = page
         this.setItems(page)

@@ -22,7 +22,7 @@ import api from '../../api/index'
 import Result from '../Result/index'
 import Pagination from '../Pagination/index'
 import { getTopics, saveSearchKey, toggleSearch } from '../../vuex/actions'
-var $ = require('jquery')
+const $ = require('jquery')
 export default {
   data () {
     return {

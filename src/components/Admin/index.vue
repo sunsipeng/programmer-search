@@ -36,13 +36,14 @@ export default {
       this.toogleAlert(true)
     },
     queryDate () {
-      let data = {
-        type: 1
-      }
-      this.queryCount(data)
+      this.queryCount({type: 1})
     },
     start () {
-      this.startFetchData()
+      const options = {
+        type: 1,
+        maxCount: 60000
+      }
+      this.startFetchData(options)
     }
   },
   ready () {

@@ -1,9 +1,9 @@
 'use strict'
-var ModelArticle = require('../models/article.js')
+const ModelArticle = require('../models/article.js')
 
 class Article {
   save (data) {
-    var model = new ModelArticle(data)
+    const model = new ModelArticle(data)
     model.save(function (err, model) {
       if (err) return console.error(err)
       console.log('save status:' + err)
@@ -11,7 +11,7 @@ class Article {
   }
 
   query (data, fn) {
-    var condition = data || {}
+    const condition = data || {}
     ModelArticle.find(condition)
       .sort({ date: -1 })
       .exec(function (err, doc) {
@@ -29,7 +29,7 @@ class Article {
   }
 
   remove (data) {
-    var condition = data || {}
+    const condition = data || {}
     ModelArticle.findOne(condition, function (err, doc) {
       if (err) { return err }
       if (doc) {

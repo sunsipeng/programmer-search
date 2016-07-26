@@ -26,11 +26,11 @@ export default {
       this.$parent.queryDate()
     },
     initCharts () {
-      var dom = document.getElementById('main')
-      var myChart = echarts.init(dom)
-      var xData = this.initXdata()
-      var yData = this.initYdata()
-      var option = {
+      const dom = document.getElementById('main')
+      const myChart = echarts.init(dom)
+      const xData = this.initXdata()
+      const yData = this.initYdata()
+      const option = {
         title: {
           text: '爬取数据详情'
         },
@@ -67,8 +67,8 @@ export default {
       let app = {}
       clearInterval(app.timeTicket)
       app.timeTicket = setInterval(() => {
-        var nowData = (new Date()).toLocaleTimeString().replace(/^\D*/, '')
-        var count = this.count ? this.count : 0
+        const nowData = (new Date()).toLocaleTimeString().replace(/^\D*/, '')
+        const count = this.count ? this.count : 0
         option.series[0].data.shift()
         option.series[0].data.push(count)
         option.xAxis[0].data.shift()
@@ -78,9 +78,9 @@ export default {
       }, 5000)
     },
     initXdata () {
-      var now = new Date()
-      var res = []
-      var len = 10
+      const res = []
+      let now = new Date()
+      let len = 10
       while (len--) {
         res.unshift(now.toLocaleTimeString().replace(/^\D*/, ''))
         now = new Date(now - 2000)
@@ -88,9 +88,9 @@ export default {
       return res
     },
     initYdata () {
-      var res = []
-      var len = 0
-      var count = this.count ? this.count : 0
+      const res = []
+      const count = this.count ? this.count : 0
+      let len = 0
       while (len <= 10) {
         res.push(count)
         len++

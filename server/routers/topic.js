@@ -1,11 +1,11 @@
 'use strict'
-var participle = require('../public/scripts/participle')
-var Article = require('../controllers/article.js')
-var article = new Article()
+const participle = require('../public/scripts/participle')
+const Article = require('../controllers/article.js')
+const article = new Article()
 
-var utils = {
+const utils = {
   include: function (arr, key) {
-    var includeStatus = false
+    let includeStatus = false
     arr.forEach(function (item) {
       if (item === key) {
         includeStatus = true
@@ -14,9 +14,9 @@ var utils = {
     return includeStatus
   },
   getTopics: function (doc, keyWords) {
-    var results = []
+    const results = []
     doc.forEach((data) => {
-      var keyArr = data.key
+      const keyArr = data.key
       keyWords.forEach((key) => {
         if (utils.include(keyArr, key)) {
           results.push(data)
@@ -26,7 +26,7 @@ var utils = {
     return results
   },
   getRegular: function (keyWords) {
-    var re = ''
+    let re = ''
     keyWords.forEach((item, index) => {
       if (index !== keyWords.length - 1 && index !== 0) {
         re += '(' + item + ')|'
@@ -42,17 +42,20 @@ var utils = {
  * 返回匹配title的数据
  */
 exports.topics = function (req, res, next) {
-  var query = req.query
-  var title = query.title
-  var page = query.page
-  var limit = query.limit
-  var start = (page - 1) * limit
-  var end = page * limit
-  var keyWords = participle.getKeys(title)
-  var re = utils.getRegular(keyWords)
-  // if (!title) res.json
+  const query = req.query
+  const title = query.title
+  const page = query.page
+  const limit = query.limit
+  const start = (page - 1) * limit
+  const end = page * limit
+  const keyWords = participle.getKeys(title)
+  const re = utils.getRegular(keyWords)
   console.log({'sourceTitle': new RegExp(re)})
   article.query({'sourceTitle': new RegExp(re)}, function (doc) {
+    if (!doc) {
+      res.status('404')
+      res.send({message: 'Data not found'})
+    }
     res.json({
       resultsLength: doc.length,
       results: doc.slice(start, end),
