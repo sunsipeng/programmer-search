@@ -6,17 +6,18 @@ Vue.use(Vuex)
 const state = {
   results: [],
   keyWords: [],
-  count: 0,
+  resultsLength: 0,
+  count: '',
   searchKey: '',
   searchStatus: false,
-  dataBase: {}
+  alertStatus: false
 }
 
 const mutations = {
   GET_TOPICS (state, data) {
     state.results = data.results
     state.keyWords = data.keyWords
-    state.count = data.count
+    state.resultsLength = data.resultsLength
   },
   SAVE_SEARCH_KEY (state, key) {
     state.searchKey = key
@@ -24,8 +25,11 @@ const mutations = {
   TOGGLE_SEARCH (state, searchStatus) {
     state.searchStatus = !state.searchStatus
   },
-  QUERY_DATABASE (state, dataBase) {
-    state.dataBase = dataBase
+  QUERY_DATABASE (state, data) {
+    state.count = data.count
+  },
+  TOOGLE_ALERT (state, alertStatus) {
+    state.alertStatus = alertStatus
   }
 }
 

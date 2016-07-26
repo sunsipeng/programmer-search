@@ -54,7 +54,7 @@ exports.topics = function (req, res, next) {
   console.log({'sourceTitle': new RegExp(re)})
   article.query({'sourceTitle': new RegExp(re)}, function (doc) {
     res.json({
-      count: doc.length,
+      resultsLength: doc.length,
       results: doc.slice(start, end),
       keyWords: keyWords
     })

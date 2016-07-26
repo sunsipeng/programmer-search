@@ -3,7 +3,7 @@
 <template>
   <div class="search-result">
     <div class="search-title">
-      找到约<strong>{{count}}</strong>个结果
+      找到约<strong>{{resultsLength}}</strong>个结果
     </div>
     <div class="search-item" v-for="item in results">
       <a class="result-title" :href="item.sourcePath" target=_blank>
@@ -42,7 +42,7 @@ export default {
   vuex: {
     getters: {
       results: state => state.results,
-      count: state => state.count,
+      resultsLength: state => state.resultsLength,
       keyWords: state => state.keyWords
     }
   }

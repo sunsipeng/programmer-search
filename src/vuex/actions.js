@@ -30,9 +30,14 @@ export const startFetchData = ({ dispatch }) => {
   }
   let reptileData = {
     type: 1,
-    maxCount: 30000
+    maxCount: 60000
   }
   api.removeAll(removeData).then(() => {
     api.startReptile(reptileData)
   })
+}
+
+// 显示或隐藏弹框
+export const toogleAlert = ({dispatch}, state) => {
+  dispatch('TOOGLE_ALERT', state)
 }

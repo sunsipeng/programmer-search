@@ -6,7 +6,7 @@
       <h3 class="title">
         segmentfault文章采集
       </h3>
-      <button type="button" name="button" class="btn-start" @click="start">重新开始</button>
+      <button type="button" name="button" class="btn-start" @click="showAlert">重新开始</button>
       <!-- <button type="button" name="button" class="btn-start" @click="queryDate">查询数量</button> -->
       <div class="sidebar-tips">
         注意：重新开始会清除之前数据库的所有数据
@@ -15,23 +15,27 @@
     <div class="admin-content">
       <div class="data-count">
         当前服务器数据条数为：
-        <span class="count">{{dataBase.len}}</span>
+        <span class="count">{{count}}</span>
         条
       </div>
       <div class="chart">
         <chart v-ref:chart></chart>
       </div>
     </div>
+    <modal-layer></modal-layer>
   </div>
 </template>
 
 <script>
 import chart from '../common/Chart/index'
-import { queryCount, startFetchData } from '../../vuex/actions'
+import ModalLayer from '../common/ModalLayer/index'
+import { queryCount, startFetchData, toogleAlert } from '../../vuex/actions'
 export default {
   methods: {
+    showAlert () {
+      this.toogleAlert(true)
+    },
     queryDate () {
-      console.log('query')
       let data = {
         type: 1
       }
@@ -46,15 +50,17 @@ export default {
   },
   vuex: {
     getters: {
-      dataBase: state => state.dataBase
+      count: state => state.count
     },
     actions: {
       queryCount,
-      startFetchData
+      startFetchData,
+      toogleAlert
     }
   },
   components: {
-    chart
+    chart,
+    'modal-layer': ModalLayer
   }
 }
 </script>

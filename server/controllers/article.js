@@ -46,7 +46,7 @@ class Article {
         doc.forEach((item) => {
           item.remove()
         })
-        fn({message: 'remove all success'})
+        fn('remove all success')
         console.log('remove all success!')
       }
     })

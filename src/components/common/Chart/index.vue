@@ -14,7 +14,7 @@ export default {
     }
   },
   watch: {
-    dataBase: function () {
+    count: function () {
       if (!this.initStatus) {
         this.initCharts()
         this.initStatus = true
@@ -68,7 +68,7 @@ export default {
       clearInterval(app.timeTicket)
       app.timeTicket = setInterval(() => {
         var nowData = (new Date()).toLocaleTimeString().replace(/^\D*/, '')
-        var count = this.dataBase ? this.dataBase.len : 0
+        var count = this.count ? this.count : 0
         option.series[0].data.shift()
         option.series[0].data.push(count)
         option.xAxis[0].data.shift()
@@ -90,7 +90,7 @@ export default {
     initYdata () {
       var res = []
       var len = 0
-      var count = this.dataBase ? this.dataBase.len : 0
+      var count = this.count ? this.count : 0
       while (len <= 10) {
         res.push(count)
         len++
@@ -100,7 +100,7 @@ export default {
   },
   vuex: {
     getters: {
-      dataBase: state => state.dataBase
+      count: state => state.count
     }
   }
 }

@@ -1,7 +1,7 @@
 <style src="./index.css" scoped></style>
 
 <template>
-  <div class="pagination" v-if="count !== 0">
+  <div class="pagination" v-if="resultsLength !== 0">
     <ul class="clearfix">
       <li @click="evtFirstTab"><<</li>
       <li v-if="leftEllipse">...</li>
@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     lastPage: function () {
-      return Math.floor(this.count / 10) || 10
+      return Math.floor(this.resultsLength / 10) || 10
     }
   },
   watch: {
@@ -146,7 +146,7 @@ export default {
   vuex: {
     getters: {
       searchKey: state => state.searchKey,
-      count: state => state.count,
+      resultsLength: state => state.resultsLength,
       results: state => state.results,
       searchStatus: state => state.searchStatus
     },
