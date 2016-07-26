@@ -26,12 +26,6 @@ npm run dev
 - 等待数据抓取到遇到条数后（默认6000条）,访问``http://localhost:8080/#!/``进入搜索页面
 - 这时就可以在输入框进行搜索了
 
-## 项目显示效果
-
-![爬虫页面](https://raw.githubusercontent.com/wendaosanshou/programmer-search/master/static/admin.png)
-![搜索页面1](https://raw.githubusercontent.com/wendaosanshou/programmer-search/master/static/search.png)
-![搜索页面2](https://raw.githubusercontent.com/wendaosanshou/programmer-search/master/static/search2.png)
-
 ## 技术栈
 - Vue.js
 - vue-router
@@ -41,3 +35,11 @@ npm run dev
 - express
 - mongoose
 - echarts
+
+## 项目显示效果
+
+### 爬虫页面
+![爬虫页面](https://raw.githubusercontent.com/wendaosanshou/programmer-search/master/static/admin.png)
+
+### 搜索页面
+![搜索页面1](https://raw.githubusercontent.com/wendaosanshou/programmer-search/master/static/search.png)
