@@ -32,6 +32,7 @@
       width: 70px;
       height: 30px;
       border: 0;
+      color: #fff;
       background: #eb7372;
       cursor: pointer;
     }
@@ -40,6 +41,7 @@
       height: 30px;
       margin-left: 10px;
       border: 0;
+      color: #fff;
       background: #7bc585;
       cursor: pointer;
     }
