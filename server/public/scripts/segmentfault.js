@@ -7,7 +7,7 @@ const nodeUrl = require('url')
 const colors = require('colors')
 const participle = require('./participle')
 const Model = require('../../controllers/model.js')
-const segmentfaultModel = new Model()
+const segmentfaultModel = new Model('segmentfault')
 
 const view = {
   getTopics: function (sres, url) {

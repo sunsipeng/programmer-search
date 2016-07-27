@@ -38,7 +38,7 @@ export default {
     initTopics () {
       const query = this.$route.query
       if (query.page) {
-        this.searchVal = query.title
+        this.searchVal = query.searchKey
         this.getTopics(query)
         this.saveSearchKey(this.searchVal)
       }
@@ -60,11 +60,11 @@ export default {
       let searchPosition = $search.offset().top
       $window.on('scroll', function () {
         let scrollTop = $window.scrollTop()
-        if (scrollTop > searchPosition) {
-          $search.addClass('moveTop')
-        } else {
-          $search.removeClass('moveTop')
-        }
+        // if (scrollTop > searchPosition) {
+        //   $search.addClass('moveTop')
+        // } else {
+        //   $search.removeClass('moveTop')
+        // }
       })
     }
   },

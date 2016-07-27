@@ -7,8 +7,8 @@
       <li v-if="leftEllipse">...</li>
       <li v-for="item of items"
         class="pagination-item"
-        data-id="{{item}}"
         :class="{active: this.currentPage === item}"
+        track-by="$index"
         @click="evtPaginationTab(item)">
         {{item}}
       </li>
@@ -27,17 +27,25 @@ export default {
       leftEllipse: false,
       rightEllipse: false,
       paginationState: false,
-      items: [1, 2, 3, 4, 5]
-    }
-  },
-  computed: {
-    lastPage: function () {
-      return Math.floor(this.resultsLength / 10) || 10
+      items: [],
+      lastPage: 5
     }
   },
   watch: {
     searchStatus: function () {
       this.evtFirstTab()
+    },
+    resultsLength: function (newVal, oldVal) {
+      const lastPage = Math.floor(newVal / 10) + 1 || 5
+      if (lastPage <= 5) {
+        this.items = []
+        for (var i = 0; i < lastPage; i++) {
+          this.items.push(i + 1)
+        }
+      } else {
+        this.items = [1, 2, 3, 4, 5]
+      }
+      this.lastPage = lastPage
     }
   },
   methods: {

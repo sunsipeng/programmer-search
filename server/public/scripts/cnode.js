@@ -7,7 +7,7 @@ const nodeUrl = require('url')
 const colors = require('colors')
 const participle = require('./participle')
 const Model = require('../../controllers/model.js')
-const cnodeModel = new Model()
+const cnodeModel = new Model('cnode')
 
 const view = {
   getPageUrls: function (sres, url) {
