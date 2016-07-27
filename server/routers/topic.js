@@ -1,7 +1,6 @@
 'use strict'
 const participle = require('../public/scripts/participle')
-const Article = require('../controllers/article.js')
-const article = new Article()
+const Model = require('../controllers/model.js')
 
 const utils = {
   include: function (arr, key) {
@@ -43,15 +42,17 @@ const utils = {
  */
 exports.topics = function (req, res, next) {
   const query = req.query
-  const title = query.title
+  const searchKey = query.searchKey
+  const type = query.type
   const page = query.page
   const limit = query.limit
   const start = (page - 1) * limit
   const end = page * limit
-  const keyWords = participle.getKeys(title)
+  const keyWords = participle.getKeys(searchKey)
   const re = utils.getRegular(keyWords)
+  const model = new Model('cnode')
   console.log({'sourceTitle': new RegExp(re)})
-  article.query({'sourceTitle': new RegExp(re)}, function (doc) {
+  model.query({'sourceTitle': new RegExp(re)}, function (doc) {
     if (!doc) {
       res.status('404')
       res.send({message: 'Data not found'})

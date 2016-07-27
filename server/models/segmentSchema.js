@@ -11,4 +11,4 @@ const schema = new mongoose.Schema({
   sourceContent: String
 })
 
-module.exports = mongoose.model('Aritcle', schema)
+module.exports = mongoose.model('Segmentfault', schema)

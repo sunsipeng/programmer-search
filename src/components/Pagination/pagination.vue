@@ -50,7 +50,7 @@ export default {
     getTopic (index) {
       const data = {
         page: index,
-        title: this.searchKey,
+        searchKey: this.searchKey,
         limit: 10
       }
       this.getTopics(data)

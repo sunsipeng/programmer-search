@@ -1,10 +1,9 @@
 import api from '../api'
 
 // 查询数据
-export const getTopics = ({ dispatch }, options) => {
-  api.getTopics(options).then((ret) => {
-    const data = ret.data
-    dispatch('GET_TOPICS', data)
+export const getTopics = ({ dispatch }, opts) => {
+  api.getTopics(opts).then((ret) => {
+    dispatch('GET_TOPICS', ret.data)
   })
 }
 
@@ -18,18 +17,22 @@ export const toggleSearch = ({ dispatch }, searchStatus) => {
 
 // 查询数据库数据
 export const queryCount = ({ dispatch }) => {
-  api.queryCount().then((ret) => {
-    const data = ret.data
-    dispatch('QUERY_DATABASE', data)
+  api.queryCount({type: 'cnode'}).then((ret) => {
+    dispatch('QUERY_DATABASE', ret.data)
   })
 }
 
-export const startFetchData = ({ dispatch }, options) => {
-  api.removeAll().then(() => {
-    api.startReptile({
-      maxCount: 60000
-    })
+export const startFetchData = ({ dispatch }, opts) => {
+  api.startReptile({
+    type: 'cnode',
+    maxCount: 60000
   })
+  // api.removeAll({type: 'cnode'}).then(() => {
+  //   api.startReptile({
+  //     type: 'cnode',
+  //     maxCount: 60000
+  //   })
+  // })
 }
 
 // 显示或隐藏弹框

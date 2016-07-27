@@ -1,17 +1,20 @@
 'use strict'
 const reptile = require('../public/scripts/reptile')
-const Article = require('../controllers/article.js')
-const article = new Article()
+const Model = require('../controllers/model.js')
 
 exports.query = function (req, res, next) {
-  article.queryCount(function (count) {
+  const type = req.query && req.query.type
+  const model = new Model('cnode')
+  model.queryCount(function (count) {
     count = count || 0
     res.send({count: count})
   })
 }
 
 exports.removeAll = function (req, res, next) {
-  article.removeAll((message) => {
+  const type = req.body && req.body.type
+  const model = new Model('cnode')
+  model.removeAll((message) => {
     if (!message) {
       res.status('404')
       res.send({message: 'removeAllFail'})
@@ -22,7 +25,6 @@ exports.removeAll = function (req, res, next) {
 }
 
 exports.startReptile = function (req, res, next) {
-  let body = req.body
-  let maxCount = body && body.maxCount
+  const maxCount = req.body && req.body.maxCount
   reptile.fetchArticle('cnode')
 }

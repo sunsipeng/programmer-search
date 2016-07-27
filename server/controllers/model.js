@@ -1,10 +1,19 @@
 'use strict'
-const ModelArticle = require('../models/article.js')
+const CnodeSchema = require('../Models/cnodeSchema.js')
+const SegmentfaultSchema = require('../Models/segmentSchema.js')
 
-class Article {
+class Model {
+  constructor (type) {
+    if (type === 'segmentfault') {
+      this.Model = SegmentfaultSchema
+    } else {
+      this.Model = CnodeSchema
+    }
+  }
+
   save (data) {
-    const model = new ModelArticle(data)
-    model.save(function (err, model) {
+    const entity = new this.Model(data)
+    entity.save(function (err, model) {
       if (err) return console.error(err)
       console.log('save status:' + err)
     })
@@ -12,7 +21,7 @@ class Article {
 
   query (data, fn) {
     const condition = data || {}
-    ModelArticle.find(condition)
+    this.Model.find(condition)
       .sort({ date: -1 })
       .exec(function (err, doc) {
         if (err) { return err }
@@ -21,7 +30,7 @@ class Article {
   }
 
   queryCount (fn) {
-    ModelArticle.count(function (err, doc) {
+    this.Model.count(function (err, doc) {
       if (err) { return err }
       console.log(doc)
       fn(doc)
@@ -30,7 +39,7 @@ class Article {
 
   remove (data) {
     const condition = data || {}
-    ModelArticle.findOne(condition, function (err, doc) {
+    this.Model.findOne(condition, function (err, doc) {
       if (err) { return err }
       if (doc) {
         doc.remove()
@@ -40,7 +49,7 @@ class Article {
   }
 
   removeAll (fn) {
-    ModelArticle.find({}, function (err, doc) {
+    this.Model.find({}, function (err, doc) {
       if (err) { return err }
       if (doc) {
         doc.forEach((item) => {
@@ -53,4 +62,4 @@ class Article {
   }
 }
 
-module.exports = Article
+module.exports = Model

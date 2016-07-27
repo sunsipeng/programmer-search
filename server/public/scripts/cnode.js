@@ -6,8 +6,8 @@ const async = require('async')
 const nodeUrl = require('url')
 const colors = require('colors')
 const participle = require('./participle')
-const Article = require('../../controllers/article.js')
-const article = new Article()
+const Model = require('../../controllers/model.js')
+const cnodeModel = new Model()
 
 const view = {
   getPageUrls: function (sres, url) {
@@ -74,7 +74,7 @@ const ctrl = {
     this.config.articles = this.config.articles.concat(result)
     if (articles.length < this.config.maxCount) {
       result.forEach(function (item, index) {
-        article.save(item)
+        cnodeModel.save(item)
       })
       // 一秒后再次请求
       setTimeout(() => {

@@ -46,8 +46,9 @@ export default {
     search () {
       const data = {
         page: 1,
-        title: this.searchVal,
-        limit: 10
+        searchKey: this.searchVal,
+        limit: 10,
+        type: 'cnode'
       }
       this.toggleSearch()
       this.saveSearchKey(this.searchVal)

@@ -10,16 +10,16 @@ const HomeResource = Vue.resource(API_ROOT + '/topics')
 const AdminResource = Vue.resource(API_ROOT + '/admin{/id}')
 
 export default {
-  getTopics (options) {
-    return HomeResource.get(options)
+  getTopics (opts) {
+    return HomeResource.get(opts)
   },
-  queryCount (options) {
-    return AdminResource.get({id: 'query', ...options})
+  queryCount (opts) {
+    return AdminResource.get({id: 'query', ...opts})
   },
-  removeAll (options) {
-    return AdminResource.save({id: 'removeAll'}, options)
+  removeAll (opts) {
+    return AdminResource.save({id: 'removeAll'}, opts)
   },
-  startReptile (options) {
-    return AdminResource.save({id: 'reptile'}, options)
+  startReptile (opts) {
+    return AdminResource.save({id: 'reptile'}, opts)
   }
 }

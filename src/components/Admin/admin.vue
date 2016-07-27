@@ -40,7 +40,7 @@ export default {
     },
     start () {
       const options = {
-        type: 1,
+        type: 'cnode',
         maxCount: 60000
       }
       this.startFetchData(options)
