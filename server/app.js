@@ -1,15 +1,15 @@
-var path = require('path')
-var express = require('express')
-var bodyParser = require('body-parser')
+const path = require('path')
+const express = require('express')
+const bodyParser = require('body-parser')
 
-var app = express()
+const app = express()
 // app.use(express.logger())
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 //  mongodb
-var db = require('./config/mongoose')()
+const db = require('./config/mongoose')()
 
 app.use(function (req, res, next) {
   res.set({
@@ -23,7 +23,7 @@ app.use(function (req, res, next) {
 app.use(require('./routers/index')(express.Router()))
 
 app.listen('3001', function () {
-  console.log('app is listen on: http://localhost:3001')
+  console.log('app is listen on: http://127.0.0.1:3001')
 })
 
 module.exports = app

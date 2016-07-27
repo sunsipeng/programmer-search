@@ -4,42 +4,25 @@ const Article = require('../controllers/article.js')
 const article = new Article()
 
 exports.query = function (req, res, next) {
-  let type = req.query && req.query.type
-  if (+type === 1) {
-    article.queryCount(function (count) {
-      if (!count) {
-        res.status('404')
-        res.send({message: 'count not found'})
-      }
-      res.send({count: count})
-    })
-  } else {
-    res.send({message: 'error options'})
-  }
+  article.queryCount(function (count) {
+    count = count || 0
+    res.send({count: count})
+  })
 }
 
 exports.removeAll = function (req, res, next) {
-  let type = req.body && req.body.type
-  if (+type === 1) {
-    article.removeAll((message) => {
-      if (!message) {
-        res.status('404')
-        res.send({message: 'Data not found'})
-      }
+  article.removeAll((message) => {
+    if (!message) {
+      res.status('404')
+      res.send({message: 'removeAllFail'})
+    } else {
       res.send({message: message})
-    })
-  } else {
-    res.send({message: 'error options'})
-  }
+    }
+  })
 }
 
 exports.startReptile = function (req, res, next) {
   let body = req.body
-  let type = body && body.type
   let maxCount = body && body.maxCount
-  if (+type === 1) {
-    reptile.fetchArticle(maxCount)
-  } else {
-    res.send({message: 'error options'})
-  }
+  reptile.fetchArticle(maxCount)
 }

@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "server": "pm2 start app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "async": "^2.0.1",
+    "body-parser": "^1.15.2",
+    "cheerio": "^0.20.0",
+    "colors": "^1.1.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.5.5",
+    "node-segment": "0.0.2",
+    "pm2": "^1.1.3"
+  }
+}

@@ -76,7 +76,10 @@ var ctrl = {
       result.forEach(function (item, index) {
         article.save(item)
       })
-      this.fetchArticle(ctrl.config.maxCount)
+      // 一秒后再次请求
+      setTimeout(() => {
+        this.fetchArticle(ctrl.config.maxCount)
+      }, 1000)
     }
     this.successLog()
     this.config.page++

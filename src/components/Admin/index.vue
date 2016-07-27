@@ -36,7 +36,7 @@ export default {
       this.toogleAlert(true)
     },
     queryDate () {
-      this.queryCount({type: 1})
+      this.queryCount()
     },
     start () {
       const options = {

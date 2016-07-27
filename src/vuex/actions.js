@@ -17,16 +17,18 @@ export const toggleSearch = ({ dispatch }, searchStatus) => {
 }
 
 // 查询数据库数据
-export const queryCount = ({ dispatch }, options) => {
-  api.queryCount(options).then((ret) => {
+export const queryCount = ({ dispatch }) => {
+  api.queryCount().then((ret) => {
     const data = ret.data
     dispatch('QUERY_DATABASE', data)
   })
 }
 
 export const startFetchData = ({ dispatch }, options) => {
-  api.removeAll({type: 1}).then(() => {
-    api.startReptile(options)
+  api.removeAll().then(() => {
+    api.startReptile({
+      maxCount: 60000
+    })
   })
 }
 
