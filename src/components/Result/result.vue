@@ -1,4 +1,4 @@
-<style src="./index.css" scoped></style>
+<style src="./result.css" scoped></style>
 
 <template>
   <div class="search-result">

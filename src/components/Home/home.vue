@@ -1,4 +1,4 @@
-<style src="./index.css" scoped></style>
+<style src="./home.css" scoped></style>
 
 <template>
   <div class="home">
@@ -19,8 +19,8 @@
 
 <script>
 import api from '../../api/index'
-import Result from '../Result/index'
-import Pagination from '../Pagination/index'
+import Result from '../Result/result'
+import Pagination from '../Pagination/pagination'
 import { getTopics, saveSearchKey, toggleSearch } from '../../vuex/actions'
 const $ = require('jquery')
 export default {

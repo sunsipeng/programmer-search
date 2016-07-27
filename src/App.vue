@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Home from './components/Home/index'
+import Home from './components/Home/home'
 import store from './vuex/stores'
 
 export default {

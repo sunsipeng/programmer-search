@@ -24,5 +24,5 @@ exports.removeAll = function (req, res, next) {
 exports.startReptile = function (req, res, next) {
   let body = req.body
   let maxCount = body && body.maxCount
-  reptile.fetchArticle(maxCount)
+  reptile.fetchArticle('cnode')
 }

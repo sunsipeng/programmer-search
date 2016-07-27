@@ -1,4 +1,4 @@
-<style src='./index.css' scoped></style>
+<style src='./modalLayer.css' scoped></style>
 
 <template>
   <div class='modal-mask' v-if="alertStatus">

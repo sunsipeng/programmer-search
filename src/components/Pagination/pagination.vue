@@ -1,4 +1,4 @@
-<style src="./index.css" scoped></style>
+<style src="./pagination.css" scoped></style>
 
 <template>
   <div class="pagination" v-if="resultsLength !== 0">

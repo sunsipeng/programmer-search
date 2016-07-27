@@ -1,4 +1,4 @@
-<style src="./index.css" scoped></style>
+<style src="./admin.css" scoped></style>
 
 <template>
   <div class="admin">
@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import chart from '../common/Chart/index'
-import ModalLayer from '../common/ModalLayer/index'
+import Chart from '../common/Chart/chart.vue'
+import ModalLayer from '../common/ModalLayer/modalLayer.vue'
 import { queryCount, startFetchData, toogleAlert } from '../../vuex/actions'
 export default {
   methods: {
@@ -60,7 +60,7 @@ export default {
     }
   },
   components: {
-    chart,
+    'chart': Chart,
     'modal-layer': ModalLayer
   }
 }

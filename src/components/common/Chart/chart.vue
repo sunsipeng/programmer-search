@@ -1,4 +1,4 @@
-<style src='./index.css' scoped></style>
+<style src='./chart.css' scoped></style>
 
 <template>
   <div class='charts' id='main'>
