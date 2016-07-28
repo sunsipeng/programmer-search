@@ -20,10 +20,7 @@
         <input type="text" class="ipt-search" placeholder="关键字" v-model="searchVal" @keyup.enter="search"/>
         <button type="button" class="btn-search" @click="search">搜索一下</button>
       </div>
-      <result
-        :results="results"
-        :key-words="keyWords"
-        ></result>
+      <result></result>
       <pagination></pagination>
     </div>
   </div>

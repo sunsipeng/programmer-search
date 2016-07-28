@@ -1,6 +1,6 @@
 'use strict'
-const CnodeSchema = require('../Models/cnodeSchema.js')
-const SegmentfaultSchema = require('../Models/segmentSchema.js')
+const CnodeSchema = require('../models/cnodeSchema.js')
+const SegmentfaultSchema = require('../models/segmentSchema.js')
 
 class Model {
   constructor (type) {

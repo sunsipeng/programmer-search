@@ -44,6 +44,7 @@ export default {
         limit: 10,
         type: this.searchType
       }
+
       this.getTopics(data)
       this.$router.go({name: 'home', query: data})
     },
@@ -60,8 +61,10 @@ export default {
       this.getTopic(index)
     },
     evtFirstTab () {
-      this.evtPagination(1)
-      this.getTopic(1)
+      if (this.searchKey) {
+        this.evtPagination(1)
+        this.getTopic(1)
+      }
     },
     evtLastTab () {
       this.evtPagination(this.lastPage)

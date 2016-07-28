@@ -1,6 +1,6 @@
 import api from '../../api/index'
-import Result from '../Result/result'
-import Pagination from '../Pagination/pagination'
+import Result from '../Result/result.vue'
+import Pagination from '../Pagination/pagination.vue'
 import { getTopics, saveSearchKey, toggleSearch, saveSearchType } from '../../vuex/actions'
 const $ = require('jquery')
 export default {
@@ -21,6 +21,8 @@ export default {
         this.searchVal = query.searchKey
         this.saveSearchKey(this.searchVal)
         this.saveSearchType(query.type)
+      } else {
+        this.saveSearchType('cnode')
       }
     },
     search () {
