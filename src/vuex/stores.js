@@ -10,7 +10,8 @@ const state = {
   count: '',
   searchKey: '',
   searchStatus: false,
-  alertStatus: false
+  alertStatus: false,
+  searchType: ''
 }
 
 const mutations = {
@@ -30,6 +31,9 @@ const mutations = {
   },
   TOOGLE_ALERT (state, alertStatus) {
     state.alertStatus = alertStatus
+  },
+  SAVE_SEARCH_TYPE (state, searchType) {
+    state.searchType = searchType
   }
 }
 

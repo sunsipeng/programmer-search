@@ -2,17 +2,29 @@ import Chart from '../common/Chart/chart.vue'
 import ModalLayer from '../common/ModalLayer/modalLayer.vue'
 import { queryCount, startFetchData, toogleAlert } from '../../vuex/actions'
 export default {
+  data () {
+    return {
+      checkType: 'cnode'
+    }
+  },
+  watch: {
+    checkType: function (newVal, oldVal) {
+      this.queryDate()
+    }
+  },
   methods: {
     showAlert () {
       this.toogleAlert(true)
     },
     queryDate () {
-      this.queryCount()
+      const opts = {
+        type: this.checkType
+      }
+      this.queryCount(opts)
     },
     start () {
       const options = {
-        type: 'cnode',
-        maxCount: 60000
+        type: this.checkType
       }
       this.startFetchData(options)
     }
@@ -22,7 +34,8 @@ export default {
   },
   vuex: {
     getters: {
-      count: state => state.count
+      count: state => state.count,
+      searchType: state => state.searchType
     },
     actions: {
       queryCount,

@@ -14,8 +14,8 @@
   border-right: 1px solid #ccc;
   padding: 30px;
   .title {
-    margin: 0 0 30px 0;
-    width: 300px;
+    /*margin: 0 0 30px 0;
+    width: 300px;*/
   }
   .btn-start {
     margin-top: 10px;
@@ -41,4 +41,22 @@
   .count {
     color: #ce3737;
   }
+}
+
+.list {
+  width: auto;
+  height: 20px;
+  label {
+    cursor: pointer;
+  }
+  .list-item {
+    float: left;
+  }
+  .item-cnode {
+    margin-right: 20px;
+  }
+}
+
+.data-type {
+  color: #ce3737
 }

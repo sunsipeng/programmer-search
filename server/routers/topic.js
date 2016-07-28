@@ -50,7 +50,7 @@ exports.topics = function (req, res, next) {
   const end = page * limit
   const keyWords = participle.getKeys(searchKey)
   const re = utils.getRegular(keyWords)
-  const model = new Model('cnode')
+  const model = new Model(type)
   console.log({'sourceTitle': new RegExp(re)})
   model.query({'sourceTitle': new RegExp(re)}, function (doc) {
     if (!doc) {

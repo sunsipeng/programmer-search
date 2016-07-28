@@ -11,6 +11,9 @@ export default {
     }
   },
   watch: {
+    searchType: function (newVal, oldVal) {
+      this.evtFirstTab()
+    },
     searchStatus: function () {
       this.evtFirstTab()
     },
@@ -38,7 +41,8 @@ export default {
       const data = {
         page: index,
         searchKey: this.searchKey,
-        limit: 10
+        limit: 10,
+        type: this.searchType
       }
       this.getTopics(data)
       this.$router.go({name: 'home', query: data})
@@ -70,7 +74,9 @@ export default {
       this.currentPage = clickPage
     },
     addLeftEllipse (clickPage) {
-      if (clickPage >= 4) {
+      const len = this.items.length
+      const currentLastPage = this.items[len - 1]
+      if (clickPage >= 4 && currentLastPage < this.lastPage) {
         this.leftEllipse = true
       } else if (clickPage < 4) {
         this.leftEllipse = false
@@ -133,8 +139,8 @@ export default {
     getters: {
       searchKey: state => state.searchKey,
       resultsLength: state => state.resultsLength,
-      results: state => state.results,
-      searchStatus: state => state.searchStatus
+      searchStatus: state => state.searchStatus,
+      searchType: state => state.searchType
     },
     actions: {
       getTopics

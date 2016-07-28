@@ -6,7 +6,7 @@ export default {
       this.toogleAlert(false)
     },
     confirm () {
-      this.startFetchData()
+      this.$parent.start()
       this.toogleAlert(false)
     }
   },

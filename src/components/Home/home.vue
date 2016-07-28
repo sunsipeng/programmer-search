@@ -5,13 +5,14 @@
     <div class="content">
       <h3 class="search-title">码农搜索</h3>
       <div class="search">
-        <i class="search-type"></i>
-        <ul class="search-type-list">
-          <li class="type-item">
+        <i class="search-type {{searchType}}" 
+          @click="evtToggleList"></i>
+        <ul class="search-type-list" v-if="listStatus">
+          <li class="type-item" @click="evtToggleItem('cnode')">
             <i class="icon-cnode"></i>
             cnode
           </li>
-          <li class="type-item">
+          <li class="type-item" @click="evtToggleItem('segmentfault')">
             <i class="icon-sf"></i>
             segmentfault
           </li>

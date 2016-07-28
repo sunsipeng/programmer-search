@@ -16,26 +16,23 @@ export const toggleSearch = ({ dispatch }, searchStatus) => {
 }
 
 // 查询数据库数据
-export const queryCount = ({ dispatch }) => {
-  api.queryCount({type: 'cnode'}).then((ret) => {
+export const queryCount = ({ dispatch }, opts) => {
+  api.queryCount(opts).then((ret) => {
     dispatch('QUERY_DATABASE', ret.data)
   })
 }
 
 export const startFetchData = ({ dispatch }, opts) => {
-  api.startReptile({
-    type: 'cnode',
-    maxCount: 60000
+  api.removeAll(opts).then(() => {
+    api.startReptile(opts)
   })
-  // api.removeAll({type: 'cnode'}).then(() => {
-  //   api.startReptile({
-  //     type: 'cnode',
-  //     maxCount: 60000
-  //   })
-  // })
 }
 
 // 显示或隐藏弹框
 export const toogleAlert = ({dispatch}, state) => {
   dispatch('TOOGLE_ALERT', state)
+}
+
+export const saveSearchType = ({dispatch}, searchType) => {
+  dispatch('SAVE_SEARCH_TYPE', searchType)
 }

@@ -1,7 +1,7 @@
 import api from '../../api/index'
 import Result from '../Result/result'
 import Pagination from '../Pagination/pagination'
-import { getTopics, saveSearchKey, toggleSearch } from '../../vuex/actions'
+import { getTopics, saveSearchKey, toggleSearch, saveSearchType } from '../../vuex/actions'
 const $ = require('jquery')
 export default {
   data () {
@@ -11,7 +11,7 @@ export default {
       results: [],
       page: 1,
       limit: 10,
-      searchData: {}
+      listStatus: false
     }
   },
   methods: {
@@ -19,20 +19,20 @@ export default {
       const query = this.$route.query
       if (query.page) {
         this.searchVal = query.searchKey
-        this.getTopics(query)
         this.saveSearchKey(this.searchVal)
+        this.saveSearchType(query.type)
       }
     },
     search () {
-      const data = {
-        page: 1,
-        searchKey: this.searchVal,
-        limit: 10,
-        type: 'cnode'
-      }
       this.toggleSearch()
       this.saveSearchKey(this.searchVal)
-      this.$router.go({ name: 'home', query: data })
+    },
+    evtToggleList () {
+      this.listStatus = !this.listStatus
+    },
+    evtToggleItem (searchType) {
+      this.saveSearchType(searchType)
+      this.listStatus = false
     },
     evtMoveToTop () {
       const $window = $(window)
@@ -59,12 +59,14 @@ export default {
   vuex: {
     getters: {
       paginationPage: state => state.paginationPage,
-      query: state => state.query
+      query: state => state.query,
+      searchType: state => state.searchType
     },
     actions: {
       getTopics,
       saveSearchKey,
-      toggleSearch
+      toggleSearch,
+      saveSearchType
     }
   }
 }
