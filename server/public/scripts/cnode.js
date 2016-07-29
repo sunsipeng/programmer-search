@@ -62,11 +62,11 @@ const ctrl = {
     self.config.currentCount++
     superagent.get(url).end(function (err, sres) {
       if (err) return console.error(err)
-      callback(null, view.getDetail(sres, url))
-
       const delay = new Date().getTime() - begin
       console.log('当前并发数是', (self.config.currentCount + '').green, '，正在抓取的是', url.green, '，耗时', (delay + '').green + '毫秒')
       self.config.currentCount--
+
+      callback(null, view.getDetail(sres, url))
     })
   },
   saveArticleData: function (err, result) {
@@ -77,10 +77,16 @@ const ctrl = {
       result.forEach(function (item, index) {
         cnodeModel.save(item)
       })
-      // 一秒后再次请求
-      setTimeout(() => {
-        this.fetchArticle()
-      }, 1000)
+      for (let i = 0; i < 30; i++) {
+        if (this.config.currentCount === 0) {
+          // 一秒后再次请求
+          return setTimeout(() => {
+            this.fetchArticle()
+          }, 1000)
+        } else {
+          console.log('当前并发数是', (this.config.currentCount + '').green)
+        }
+      }
     }
     this.successLog()
     this.config.page++

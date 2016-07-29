@@ -47,3 +47,7 @@ npm run dev
 ### 搜索页面
 当数据爬取成功是，通过在搜索页面输入关键词，进行搜索
 ![搜索页面1](https://raw.githubusercontent.com/wendaosanshou/programmer-search/master/source/search.png)
+
+## 声明
+
+该项目为个人学习项目。请勿使用相关代码用于盈利或攻击他人网站。

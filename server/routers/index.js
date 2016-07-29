@@ -7,8 +7,8 @@ module.exports = function (router) {
   router.get('/', test.showTest)
   router.get('/topics', topic.topics)
   router.get('/admin/query', admin.query)
-  // router.post('/admin/removeAll', admin.removeAll)
-  // router.post('/admin/reptile', admin.startReptile)
+  router.post('/admin/removeAll', admin.removeAll)
+  router.post('/admin/reptile', admin.startReptile)
 
   return router
 }
