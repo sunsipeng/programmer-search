@@ -2,6 +2,7 @@
 
 <template>
   <div class="home">
+    <fork></fork>
     <div class="content">
       <h3 class="search-title">码农搜索</h3>
       <div class="search">

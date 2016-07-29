@@ -40,6 +40,7 @@ const ctrl = {
   config: {
     url: 'https://cnodejs.org/',
     page: 1,
+    maxPage: 460,
     articles: [],
     currentCount: 0,
     maxCount: 60000
@@ -72,7 +73,7 @@ const ctrl = {
     var articles = this.config.articles
     if (err) return console.error(err)
     this.config.articles = this.config.articles.concat(result)
-    if (articles.length < this.config.maxCount) {
+    if (this.config.page < this.config.maxPage) {
       result.forEach(function (item, index) {
         cnodeModel.save(item)
       })

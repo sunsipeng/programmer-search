@@ -18,7 +18,7 @@ export default {
       this.evtFirstTab()
     },
     resultsLength: function (newVal, oldVal) {
-      const lastPage = Math.floor(newVal / 10) + 1 || 5
+      let lastPage = Math.ceil(newVal / 10) || 5
       if (lastPage <= 5) {
         this.items = []
         for (var i = 0; i < lastPage; i++) {
@@ -28,6 +28,7 @@ export default {
         this.items = [1, 2, 3, 4, 5]
       }
       this.lastPage = lastPage
+      this.evtPagination(1)
     }
   },
   methods: {
@@ -88,6 +89,7 @@ export default {
     addRightEllipse () {
       const len = this.items.length
       const currentLastPage = this.items[len - 1]
+      // console.log(currentLastPage, this.lastPage)
       if (currentLastPage < this.lastPage) {
         this.rightEllipse = true
       } else if (currentLastPage === this.lastPage) {

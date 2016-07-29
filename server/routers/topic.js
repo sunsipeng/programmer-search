@@ -34,6 +34,13 @@ const utils = {
       }
     })
     return re
+  },
+  getOpts: function (query) {
+    const page = query.page
+    const limit = query.limit
+    const start = (page - 1) * limit
+    const end = page * limit
+    return {start, end}
   }
 }
 
@@ -49,18 +56,20 @@ exports.topics = function (req, res, next) {
   const start = (page - 1) * limit
   const end = page * limit
   const keyWords = participle.getKeys(searchKey)
-  const re = utils.getRegular(keyWords)
-  const model = new Model(type)
-  console.log({'sourceTitle': new RegExp(re)})
-  model.query({'sourceTitle': new RegExp(re)}, function (doc) {
-    if (!doc) {
-      res.status('404')
-      res.send({message: 'Data not found'})
-    }
-    res.json({
-      resultsLength: doc.length,
-      results: doc.slice(start, end),
-      keyWords: keyWords
+  if (keyWords.length > 0) {
+    const model = new Model(type)
+    const re = utils.getRegular(keyWords)
+    console.log({'sourceTitle': new RegExp(re)})
+    model.query({'sourceTitle': new RegExp(re)}, function (doc) {
+      if (!doc) {
+        res.status('404')
+        res.send({message: 'Data not found'})
+      }
+      res.json({
+        resultsLength: doc.length,
+        results: doc.slice(start, end),
+        keyWords: keyWords
+      })
     })
-  })
+  }
 }

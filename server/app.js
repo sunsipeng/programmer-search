@@ -10,6 +10,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 //  mongodb
 const db = require('./config/mongoose')()
+db.on('error', console.error.bind(console, '连接错误:'))
+db.once('open', function () {
+  // 一次打开记录
+  console.log('success')
+})
 
 app.use(function (req, res, next) {
   res.set({

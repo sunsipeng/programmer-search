@@ -1,6 +1,7 @@
 import api from '../../api/index'
 import Result from '../Result/result.vue'
 import Pagination from '../Pagination/pagination.vue'
+import Fork from '../common/Fork/fork.vue'
 import { getTopics, saveSearchKey, toggleSearch, saveSearchType } from '../../vuex/actions'
 const $ = require('jquery')
 export default {
@@ -56,7 +57,8 @@ export default {
   },
   components: {
     result: Result,
-    pagination: Pagination
+    pagination: Pagination,
+    fork: Fork
   },
   vuex: {
     getters: {

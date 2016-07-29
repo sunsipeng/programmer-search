@@ -41,6 +41,7 @@ const ctrl = {
   config: {
     url: 'https://segmentfault.com/questions',
     page: 1,
+    maxPage: 2000,
     articles: [],
     currentCount: 0,
     maxCount: 60000
@@ -73,14 +74,14 @@ const ctrl = {
     var articles = this.config.articles
     if (err) return console.error(err)
     this.config.articles = this.config.articles.concat(result)
-    if (articles.length < this.config.maxCount) {
+    if (this.config.page < this.config.maxPage) {
       result.forEach(function (item, index) {
         segmentfaultModel.save(item)
       })
       // 一秒后再次请求
       setTimeout(() => {
         this.fetchArticle()
-      }, 1000)
+      }, 2000)
     }
     this.successLog()
     this.config.page++
