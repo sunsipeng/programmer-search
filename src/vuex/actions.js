@@ -36,3 +36,7 @@ export const toogleAlert = ({dispatch}, state) => {
 export const saveSearchType = ({dispatch}, searchType) => {
   dispatch('SAVE_SEARCH_TYPE', searchType)
 }
+
+export const showLoading = ({dispatch}, loadingState) => {
+  dispatch('SHOW_LOADGIN', loadingState)
+}

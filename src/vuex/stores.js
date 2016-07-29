@@ -11,7 +11,8 @@ const state = {
   searchKey: '',
   searchStatus: false,
   alertStatus: false,
-  searchType: ''
+  searchType: '',
+  loadingState: false
 }
 
 const mutations = {
@@ -34,6 +35,9 @@ const mutations = {
   },
   SAVE_SEARCH_TYPE (state, searchType) {
     state.searchType = searchType
+  },
+  SHOW_LOADGIN (state, loadingState) {
+    state.loadingState = loadingState
   }
 }
 

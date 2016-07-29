@@ -1,4 +1,5 @@
 import { getTopics } from '../../vuex/actions'
+import $ from 'jquery'
 export default {
   data () {
     return {
@@ -60,6 +61,7 @@ export default {
     evtPaginationTab (index) {
       this.evtPagination(index)
       this.getTopic(index)
+      $(window).scrollTop(0)
     },
     evtFirstTab () {
       if (this.searchKey) {
