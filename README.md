@@ -1,6 +1,6 @@
 # programmer-search
 
-> 码农搜索-一个程序员的内容索引网站
+> 码农搜索-一个程序员的内容索引网站（可抓取cnode和segmentfault社区）
 
 ## 启动步骤
 
@@ -20,10 +20,12 @@ npm run dev
 
 运行项目步骤：
 
-- 运行mongodb服务（可先安装mongodb后将其bin目录设置为系统环境变量，然后在cmd命令下通过mongod启动）
+- 运行mongodb服务（在mongodb安装目录的bin目录里运行mongod）
+- 在server目录下运行命令``npm run server``
+- 在项目根目录运行命令``npm run dev``
 - 访问``http://localhost:8080/#!/admin``，初次使用会显示服务器数据条数为0条
 - 点击``重新开始``按钮,此时会启动node的爬虫服务，并且实时刷新抓取到的数据条数
-- 等待数据抓取到遇到条数后（默认6000条）,访问``http://localhost:8080/#!/``进入搜索页面
+- 等待数据抓取到默认条数后,访问``http://localhost:8080/#!/``进入搜索页面（也可以自己在server的cmd命令框下使用ctrl+c停止爬虫）
 - 这时就可以在输入框进行搜索了
 
 ## 技术栈
