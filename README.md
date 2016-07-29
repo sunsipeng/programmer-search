@@ -42,8 +42,8 @@ npm run dev
 
 ### 爬虫页面
 可通过点击重新开始按钮来重新爬取数据
-![爬虫页面](https://raw.githubusercontent.com/wendaosanshou/programmer-search/master/static/admin.png)
+![爬虫页面](https://raw.githubusercontent.com/wendaosanshou/programmer-search/master/source/admin.png)
 
 ### 搜索页面
 当数据爬取成功是，通过在搜索页面输入关键词，进行搜索
-![搜索页面1](https://raw.githubusercontent.com/wendaosanshou/programmer-search/master/static/search.png)
+![搜索页面1](https://raw.githubusercontent.com/wendaosanshou/programmer-search/master/source/search.png)
