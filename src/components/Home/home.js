@@ -43,11 +43,11 @@ export default {
       let searchPosition = $search.offset().top
       $window.on('scroll', function () {
         let scrollTop = $window.scrollTop()
-          // if (scrollTop > searchPosition) {
-          //   $search.addClass('moveTop')
-          // } else {
-          //   $search.removeClass('moveTop')
-          // }
+        if (scrollTop > searchPosition) {
+          $search.addClass('moveTop')
+        } else if (scrollTop < searchPosition - 10) {
+          $search.removeClass('moveTop')
+        }
       })
     }
   },

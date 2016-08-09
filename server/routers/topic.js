@@ -56,6 +56,7 @@ exports.topics = function (req, res, next) {
   const start = (page - 1) * limit
   const end = page * limit
   const keyWords = participle.getKeys(searchKey)
+  console.log(keyWords)
   if (keyWords.length > 0) {
     const model = new Model(type)
     const re = utils.getRegular(keyWords)

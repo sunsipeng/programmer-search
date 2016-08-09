@@ -23,10 +23,10 @@ export default {
       this.queryCount(opts)
     },
     start () {
-      const options = {
+      const opts = {
         type: this.checkType
       }
-      this.startFetchData(options)
+      this.startFetchData(opts)
     }
   },
   ready () {
