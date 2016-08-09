@@ -26,13 +26,17 @@ const utils = {
   },
   getRegular: function (keyWords) {
     let re = ''
-    keyWords.forEach((item, index) => {
-      if (index !== keyWords.length - 1 && index !== 0) {
-        re += '(' + item + ')|'
-      } else {
-        re += '(' + item + ')'
-      }
-    })
+    if (keyWords.length > 1) {
+      keyWords.forEach((item, index) => {
+        if (index !== keyWords.length - 1) {
+          re += '(' + item + ')|'
+        } else {
+          re += '(' + item + ')'
+        }
+      })
+    } else {
+      re += '(' + re + ')'
+    }
     return re
   },
   getOpts: function (query) {
